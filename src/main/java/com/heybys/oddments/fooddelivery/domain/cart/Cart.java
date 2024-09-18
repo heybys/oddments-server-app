@@ -1,50 +1,42 @@
-package com.heybys.oddments.fooddelivery.domain.order;
+package com.heybys.oddments.fooddelivery.domain.cart;
 
 import com.heybys.oddments.base.domain.AggregateRoot;
-import com.heybys.oddments.fooddelivery.domain.order.OrderId.OrderIdJavaType;
+import com.heybys.oddments.fooddelivery.domain.cart.CartId.CartIdJavaType;
 import com.heybys.oddments.fooddelivery.domain.user.UserId;
 import com.heybys.oddments.fooddelivery.domain.user.UserId.UserIdJavaType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.annotations.JavaType;
 
 @Getter
 @Entity
-@Table(name = "orders")
-public class Order extends AggregateRoot<Order, OrderId> {
+@Table(name = "cart")
+public class Cart extends AggregateRoot<Cart, CartId> {
 
     @Id
-    @JavaType(OrderIdJavaType.class)
+    @JavaType(CartIdJavaType.class)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private OrderId id;
+    private CartId id;
 
     @JavaType(UserIdJavaType.class)
-    @Column(name = "user_id")
     private UserId userId;
 
-    @Column(name = "ordered_time")
-    private LocalDateTime orderedTime;
-
-    public Order() {}
+    public Cart() {}
 
     @Builder
-    public Order(UserId userId, LocalDateTime orderedTime) {
+    public Cart(UserId userId) {
         this.userId = userId;
-        this.orderedTime = orderedTime;
     }
 
     @Builder
-    public Order(OrderId id, UserId userId, LocalDateTime orderedTime) {
+    public Cart(CartId id, UserId userId) {
         this.id = id;
         this.userId = userId;
-        this.orderedTime = orderedTime;
     }
 
     @Override

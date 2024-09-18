@@ -24,8 +24,8 @@ public class TimePeriod extends ValueObject<TimePeriod> {
     }
 
     public boolean contains(LocalTime datetime) {
-        return (datetime.isAfter(startTime) || datetime.equals(startTime)) &&
-                (datetime.isBefore(endTime) || datetime.equals(endTime));
+        return (datetime.isAfter(startTime) || datetime.equals(startTime))
+                && (datetime.isBefore(endTime) || datetime.equals(endTime));
     }
 
     public TimePeriod putOffHours(int hours) {
@@ -35,5 +35,4 @@ public class TimePeriod extends ValueObject<TimePeriod> {
     public TimePeriod putOffHours(long hours) {
         return new TimePeriod(startTime.plusHours(hours), endTime.plusHours(hours));
     }
-
 }

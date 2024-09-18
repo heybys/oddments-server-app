@@ -4,7 +4,9 @@ import com.heybys.oddments.base.domain.ValueObject;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.function.Function;
+import lombok.Getter;
 
+@Getter
 public class Money extends ValueObject<Money> {
     public static final Money ZERO = Money.wons(0);
 
@@ -27,8 +29,18 @@ public class Money extends ValueObject<Money> {
     }
 
     @Override
+    public boolean equals(Object other) {
+        return super.equals(other);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
     protected Object[] getEqualityFields() {
-        return new Object[] { amount.doubleValue() };
+        return new Object[] {amount.doubleValue()};
     }
 
     public Money plus(Money amount) {
@@ -53,10 +65,6 @@ public class Money extends ValueObject<Money> {
 
     public boolean isGreaterThanOrEqual(Money other) {
         return amount.compareTo(other.amount) >= 0;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
     }
 
     public Long longValue() {

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd"
+  objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+  <changeSet id="1726685005402-1" author="heybys">
+    <createTable tableName="cart">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_cart"/>
+      </column>
+      <column name="user_id" type="bigint"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="1726685005402-2" author="heybys">
+    <createTable tableName="menu">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_menu"/>
+      </column>
+      <column name="shop_id" type="bigint"/>
+      <column name="menu_name" type="VARCHAR(255)"/>
+      <column name="menu_description" type="VARCHAR(255)"/>
+      <column name="open" type="bit"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="1726685005402-3" author="heybys">
+    <createTable tableName="option">
+      <column name="option_group_id" type="bigint">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_option"/>
+      </column>
+      <column name="option_name" type="VARCHAR(255)">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_option"/>
+      </column>
+      <column name="option_price" type="java.math.BigDecimal">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_option"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="1726685005402-4" author="heybys">
+    <createTable tableName="option_group">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_option_group"/>
+      </column>
+      <column name="menu_id" type="bigint"/>
+      <column name="option_group_name" type="VARCHAR(255)"/>
+      <column name="mandatory" type="bit"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="1726685005402-5" author="heybys">
+    <createTable tableName="shop">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_shop"/>
+      </column>
+      <column name="shop_name" type="VARCHAR(255)"/>
+      <column name="min_order_amount" type="java.math.BigDecimal"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="1726685005402-6" author="heybys">
+    <createTable tableName="shop_operation_hours">
+      <column name="shop_id" type="bigint">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_shop_operation_hours"/>
+      </column>
+      <column name="start_time" type="TIME"/>
+      <column name="end_time" type="TIME"/>
+      <column name="day_of_week" type="VARCHAR(255)">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_shop_operation_hours"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>

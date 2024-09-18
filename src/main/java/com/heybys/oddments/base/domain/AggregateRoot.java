@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 public abstract class AggregateRoot<D extends DomainEntity<D, I>, I> extends DomainEntity<D, I> {
 
     @Transient
-    private final transient List<Object> domainEvents = new ArrayList<>();
+    private final List<Object> domainEvents = new ArrayList<>();
 
     protected void registerEvent(D event) {
         Assert.notNull(event, "Domain event must not be null");
