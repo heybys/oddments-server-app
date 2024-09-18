@@ -1,9 +1,9 @@
-package com.heybys.oddments.domain.user;
+package com.heybys.oddments.fooddelivery.domain.user;
 
 import com.heybys.oddments.base.domain.AggregateRoot;
-import com.heybys.oddments.domain.generic.Address;
-import com.heybys.oddments.domain.generic.Contact;
-import com.heybys.oddments.domain.user.UserId.UserIdJavaType;
+import com.heybys.oddments.fooddelivery.domain.generic.Address;
+import com.heybys.oddments.fooddelivery.domain.generic.Contact;
+import com.heybys.oddments.fooddelivery.domain.user.UserId.UserIdJavaType;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;

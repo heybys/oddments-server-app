@@ -1,4 +1,4 @@
-package com.heybys.oddments.domain.order;
+package com.heybys.oddments.fooddelivery.domain.order;
 
 import com.heybys.oddments.base.domain.Repository;
 

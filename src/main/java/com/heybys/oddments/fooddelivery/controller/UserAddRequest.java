@@ -1,8 +1,8 @@
-package com.heybys.oddments.controller;
+package com.heybys.oddments.fooddelivery.controller;
 
-import com.heybys.oddments.domain.generic.Address;
-import com.heybys.oddments.domain.generic.Contact;
-import com.heybys.oddments.domain.user.User;
+import com.heybys.oddments.fooddelivery.domain.generic.Address;
+import com.heybys.oddments.fooddelivery.domain.generic.Contact;
+import com.heybys.oddments.fooddelivery.domain.user.User;
 import lombok.Data;
 
 @Data

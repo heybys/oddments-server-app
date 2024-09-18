@@ -1,9 +1,9 @@
-package com.heybys.oddments.persistence.user;
+package com.heybys.oddments.fooddelivery.persistence.user;
 
 import com.heybys.oddments.base.jpa.BaseRepository;
-import com.heybys.oddments.domain.user.User;
-import com.heybys.oddments.domain.user.UserId;
-import com.heybys.oddments.domain.user.UserRepository;
+import com.heybys.oddments.fooddelivery.domain.user.User;
+import com.heybys.oddments.fooddelivery.domain.user.UserId;
+import com.heybys.oddments.fooddelivery.domain.user.UserRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

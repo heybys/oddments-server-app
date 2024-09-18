@@ -1,9 +1,9 @@
-package com.heybys.oddments.domain.order;
+package com.heybys.oddments.fooddelivery.domain.order;
 
 import com.heybys.oddments.base.domain.AggregateRoot;
-import com.heybys.oddments.domain.order.OrderId.OrderIdJavaType;
-import com.heybys.oddments.domain.user.UserId;
-import com.heybys.oddments.domain.user.UserId.UserIdJavaType;
+import com.heybys.oddments.fooddelivery.domain.order.OrderId.OrderIdJavaType;
+import com.heybys.oddments.fooddelivery.domain.user.UserId;
+import com.heybys.oddments.fooddelivery.domain.user.UserId.UserIdJavaType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,8 +1,8 @@
-package com.heybys.oddments.controller;
+package com.heybys.oddments.fooddelivery.controller;
 
-import com.heybys.oddments.domain.user.User;
-import com.heybys.oddments.domain.user.UserId;
-import com.heybys.oddments.domain.user.UserRepository;
+import com.heybys.oddments.fooddelivery.domain.user.User;
+import com.heybys.oddments.fooddelivery.domain.user.UserId;
+import com.heybys.oddments.fooddelivery.domain.user.UserRepository;
 import java.net.URI;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

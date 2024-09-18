@@ -1,4 +1,4 @@
-package com.heybys.oddments.domain.generic;
+package com.heybys.oddments.fooddelivery.domain.generic;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
