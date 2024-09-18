@@ -5,6 +5,7 @@ import java.util.Arrays;
 public abstract class ValueObject<T extends ValueObject<T>> {
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean equals(Object other) {
         if (other == null) {
             return false;

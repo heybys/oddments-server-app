@@ -5,6 +5,7 @@ public abstract class DomainEntity<T extends DomainEntity<T, I>, I> {
     public abstract I getId();
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean equals(Object other) {
         if (other == null) {
             return false;

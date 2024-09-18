@@ -13,7 +13,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.annotations.JavaType;
 
@@ -27,7 +26,7 @@ public class User extends AggregateRoot<User, UserId> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UserId id;
 
-    @Column
+    @Column(name = "username")
     private String username;
 
     @Embedded
@@ -51,12 +50,10 @@ public class User extends AggregateRoot<User, UserId> {
 
     public User() {}
 
-    @Builder
     public User(String username, Contact contact, Address homeAddress, Address workAddress) {
         this(null, username, contact, homeAddress, workAddress);
     }
 
-    @Builder
     public User(UserId id, String username, Contact contact, Address homeAddress, Address workAddress) {
         this.id = id;
         this.username = username;
