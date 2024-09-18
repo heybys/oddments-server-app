@@ -7,7 +7,7 @@ import com.heybys.oddments.fooddelivery.domain.user.UserRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserRepositoryImpl extends BaseRepository<User, UserId, UserJpaRepository> implements UserRepository {
+class UserRepositoryImpl extends BaseRepository<User, UserId, UserJpaRepository> implements UserRepository {
 
     public UserRepositoryImpl(UserJpaRepository repository) {
         super(repository);
