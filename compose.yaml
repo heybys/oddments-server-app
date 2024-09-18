@@ -1,6 +1,7 @@
 services:
   mysql:
     image: 'mysql:latest'
+    restart: always
     environment:
       - 'MYSQL_DATABASE=master'
       - 'MYSQL_ROOT_PASSWORD=rootp@ssw0rd'
