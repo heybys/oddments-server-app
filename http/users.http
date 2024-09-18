@@ -1,0 +1,16 @@
+### Send POST request with json body
+POST http://localhost:8080/api/v1/users
+Content-Type: application/json
+
+{
+  "username": "jero",
+  "phone": "01049051923",
+  "email":  "byn0174@gmail.com",
+  "homeCity": "seoul",
+  "homeStreet":  "yangcheonro-344",
+  "homeZipCode": "07791"
+}
+
+### GET request
+GET http://localhost:8080/api/v1/users/3
+Accept: application/json
