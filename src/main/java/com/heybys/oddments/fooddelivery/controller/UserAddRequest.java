@@ -19,19 +19,18 @@ public class UserAddRequest {
     private final String workZipCode;
 
     public User toUserDomain() {
-        return User.builder()
-                .username(username)
-                .contact(Contact.builder().phone(phone).email(email).build())
-                .homeAddress(Address.builder()
-                        .city(homeCity)
-                        .street(homeStreet)
-                        .zipCode(homeZipCode)
-                        .build())
-                .workAddress(Address.builder()
-                        .city(workCity)
-                        .street(workStreet)
-                        .zipCode(workZipCode)
-                        .build())
-                .build();
+        return new User(username, toContact(), toHomeAddress(), toWorkAddress());
+    }
+
+    private Contact toContact() {
+        return new Contact(phone, email);
+    }
+
+    private Address toHomeAddress() {
+        return new Address(homeCity, homeStreet, homeZipCode);
+    }
+
+    private Address toWorkAddress() {
+        return new Address(workCity, workStreet, workZipCode);
     }
 }
