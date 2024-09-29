@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import org.hibernate.annotations.JavaType;
 
+@SuppressWarnings({"JpaAttributeTypeInspection", "java:S1710"})
 @Getter
 @Entity
 @Table(name = "user")

@@ -15,6 +15,7 @@ import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.annotations.JavaType;
 
+@SuppressWarnings("JpaAttributeTypeInspection")
 @Getter
 @Entity
 @Table(name = "orders")

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd"
+  objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+  <changeSet id="1727630978866-3" author="heybys">
+    <addForeignKeyConstraint baseColumnNames="menu_id" baseTableName="option_group"
+      constraintName="FK_OPTION_GROUP_ON_MENU" referencedColumnNames="id"
+      referencedTableName="menu"/>
+  </changeSet>
+
+  <changeSet id="1727630978866-4" author="heybys">
+    <addForeignKeyConstraint baseColumnNames="option_group_id" baseTableName="option"
+      constraintName="fk_option_on_option_group" referencedColumnNames="id"
+      referencedTableName="option_group"/>
+  </changeSet>
+
+  <changeSet id="1727630978866-5" author="heybys">
+    <addForeignKeyConstraint baseColumnNames="shop_id" baseTableName="shop_operation_hours"
+      constraintName="fk_shop_operation_hours_on_shop" referencedColumnNames="id"
+      referencedTableName="shop"/>
+  </changeSet>
+
+</databaseChangeLog>

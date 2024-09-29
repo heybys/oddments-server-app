@@ -1,11 +1,13 @@
 package com.heybys.oddments.fooddelivery.domain.shop;
 
 import com.heybys.oddments.base.domain.AggregateRoot;
+import com.heybys.oddments.base.jpa.MoneyConverter;
 import com.heybys.oddments.fooddelivery.domain.generic.Money;
 import com.heybys.oddments.fooddelivery.domain.generic.TimePeriod;
 import com.heybys.oddments.fooddelivery.domain.shop.ShopId.ShopIdJavaType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -23,6 +25,7 @@ import java.util.Map;
 import lombok.Getter;
 import org.hibernate.annotations.JavaType;
 
+@SuppressWarnings("JpaAttributeTypeInspection")
 @Getter
 @Entity
 @Table(name = "shop")
@@ -36,6 +39,7 @@ public class Shop extends AggregateRoot<Shop, ShopId> {
     @Column(name = "shop_name")
     private String name;
 
+    @Convert(converter = MoneyConverter.class)
     @Column(name = "min_order_amount")
     private Money minOrderPrice;
 

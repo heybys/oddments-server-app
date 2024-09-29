@@ -23,6 +23,16 @@ public class TimePeriod extends ValueObject<TimePeriod> {
         this.endTime = endTime;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return super.equals(other);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public boolean contains(LocalTime datetime) {
         return (datetime.isAfter(startTime) || datetime.equals(startTime))
                 && (datetime.isBefore(endTime) || datetime.equals(endTime));

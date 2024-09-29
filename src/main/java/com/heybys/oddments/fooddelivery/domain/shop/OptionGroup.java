@@ -20,6 +20,7 @@ import java.util.Optional;
 import lombok.Getter;
 import org.hibernate.annotations.JavaType;
 
+@SuppressWarnings("JpaAttributeTypeInspection")
 @Getter
 @Entity
 @Table(name = "option_group")
@@ -57,6 +58,16 @@ public class OptionGroup extends DomainEntity<OptionGroup, OptionGroupId> {
         setOptions(options);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return super.equals(other);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     private void setName(String name) {
         if (name == null || name.length() < 2) {
             throw new IllegalArgumentException("The option group name must be at least 2 characters.");
@@ -77,6 +88,7 @@ public class OptionGroup extends DomainEntity<OptionGroup, OptionGroupId> {
         return options.stream().filter(option -> option.equals(target)).findFirst();
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isFree() {
         return options.stream().allMatch(Option::isFree);
     }

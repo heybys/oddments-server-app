@@ -19,6 +19,7 @@ import java.util.Optional;
 import lombok.Getter;
 import org.hibernate.annotations.JavaType;
 
+@SuppressWarnings("JpaAttributeTypeInspection")
 @Getter
 @Entity
 @Table(name = "menu")
