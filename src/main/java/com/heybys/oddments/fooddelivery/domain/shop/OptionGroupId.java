@@ -5,7 +5,7 @@ import com.heybys.oddments.base.jpa.hibernate.LongTypeIdentifierJavaType;
 
 public class OptionGroupId extends LongTypeIdentifier {
 
-    protected OptionGroupId(Long id) {
+    public OptionGroupId(Long id) {
         super(id);
     }
 

@@ -3,6 +3,7 @@ package com.heybys.oddments.fooddelivery.domain.shop;
 import com.heybys.oddments.base.domain.ValueObject;
 import com.heybys.oddments.base.jpa.MoneyConverter;
 import com.heybys.oddments.fooddelivery.domain.generic.Money;
+import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
@@ -11,8 +12,10 @@ import lombok.Getter;
 @Embeddable
 public class Option extends ValueObject<Option> {
 
+    @Column(nullable = false)
     private String optionName;
 
+    @Column(nullable = false)
     @Convert(converter = MoneyConverter.class)
     private Money optionPrice;
 

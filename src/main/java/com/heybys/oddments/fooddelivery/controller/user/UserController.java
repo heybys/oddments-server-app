@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1/user")
 public class UserController {
 
     private final UserRepository userRepository;
@@ -30,7 +30,7 @@ public class UserController {
 
         userRepository.add(user);
 
-        URI location = URI.create("/api/v1/users/" + user.getId().longValue());
+        URI location = URI.create("/api/v1/user/" + user.getId().longValue());
 
         return ResponseEntity.created(location).build();
     }

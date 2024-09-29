@@ -13,8 +13,8 @@
   </changeSet>
 
   <changeSet id="1727630978866-4" author="heybys">
-    <addForeignKeyConstraint baseColumnNames="option_group_id" baseTableName="option"
-      constraintName="fk_option_on_option_group" referencedColumnNames="id"
+    <addForeignKeyConstraint baseColumnNames="option_group_id" baseTableName="options"
+      constraintName="fk_options_on_option_group" referencedColumnNames="id"
       referencedTableName="option_group"/>
   </changeSet>
 

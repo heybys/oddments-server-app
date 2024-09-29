@@ -42,7 +42,7 @@ public class OptionGroup extends DomainEntity<OptionGroup, OptionGroupId> {
     private boolean mandatory;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "option", joinColumns = @JoinColumn(name = "option_group_id"))
+    @CollectionTable(name = "options", joinColumns = @JoinColumn(name = "option_group_id"))
     private List<Option> options = new ArrayList<>();
 
     public OptionGroup() {}

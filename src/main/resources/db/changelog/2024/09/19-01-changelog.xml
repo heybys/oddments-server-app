@@ -28,15 +28,15 @@
   </changeSet>
 
   <changeSet id="1726685005402-3" author="heybys">
-    <createTable tableName="option">
+    <createTable tableName="options">
       <column name="option_group_id" type="bigint">
-        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_option"/>
+        <constraints nullable="false"/>
       </column>
       <column name="option_name" type="VARCHAR(255)">
-        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_option"/>
+        <constraints nullable="false"/>
       </column>
       <column name="option_price" type="java.math.BigDecimal">
-        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_option"/>
+        <constraints nullable="false"/>
       </column>
     </createTable>
   </changeSet>
