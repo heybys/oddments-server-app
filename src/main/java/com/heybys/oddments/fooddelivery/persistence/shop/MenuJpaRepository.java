@@ -6,7 +6,7 @@ import com.heybys.oddments.fooddelivery.domain.shop.ShopId;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MenuJpaRepository extends JpaRepository<Menu, MenuId> {
+interface MenuJpaRepository extends JpaRepository<Menu, MenuId> {
 
     List<Menu> findByShopIdAndOpenIsTrue(ShopId shopId);
 

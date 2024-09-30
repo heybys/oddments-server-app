@@ -7,7 +7,7 @@ import com.heybys.oddments.fooddelivery.domain.shop.ShopRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ShopRepositoryImpl extends BaseRepository<Shop, ShopId, ShopJpaRepository> implements ShopRepository {
+class ShopRepositoryImpl extends BaseRepository<Shop, ShopId, ShopJpaRepository> implements ShopRepository {
 
     public ShopRepositoryImpl(ShopJpaRepository repository) {
         super(repository);

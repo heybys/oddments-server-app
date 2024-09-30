@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MenuRepositoryImpl extends BaseRepository<Menu, MenuId, MenuJpaRepository> implements MenuRepository {
+class MenuRepositoryImpl extends BaseRepository<Menu, MenuId, MenuJpaRepository> implements MenuRepository {
 
     public MenuRepositoryImpl(MenuJpaRepository repository) {
         super(repository);
