@@ -1,10 +1,9 @@
 package com.heybys.oddments.fooddelivery.domain.shop;
 
-import com.heybys.oddments.base.domain.AggregateRoot;
-import com.heybys.oddments.base.jpa.MoneyConverter;
-import com.heybys.oddments.fooddelivery.domain.generic.Money;
-import com.heybys.oddments.fooddelivery.domain.generic.TimePeriod;
-import com.heybys.oddments.fooddelivery.domain.shop.ShopId.ShopIdJavaType;
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.util.Map;
+
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -19,11 +18,16 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapKeyColumn;
 import jakarta.persistence.MapKeyEnumerated;
 import jakarta.persistence.Table;
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
-import java.util.Map;
-import lombok.Getter;
+
 import org.hibernate.annotations.JavaType;
+
+import com.heybys.oddments.base.domain.AggregateRoot;
+import com.heybys.oddments.base.jpa.MoneyConverter;
+import com.heybys.oddments.fooddelivery.domain.generic.Money;
+import com.heybys.oddments.fooddelivery.domain.generic.TimePeriod;
+import com.heybys.oddments.fooddelivery.domain.shop.ShopId.ShopIdJavaType;
+
+import lombok.Getter;
 
 @SuppressWarnings("JpaAttributeTypeInspection")
 @Getter

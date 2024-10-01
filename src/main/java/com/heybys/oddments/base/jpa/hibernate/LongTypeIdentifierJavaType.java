@@ -1,13 +1,15 @@
 package com.heybys.oddments.base.jpa.hibernate;
 
-import com.heybys.oddments.base.domain.LongTypeIdentifier;
 import java.sql.Types;
+
 import org.hibernate.type.descriptor.WrapperOptions;
 import org.hibernate.type.descriptor.java.AbstractClassJavaType;
 import org.hibernate.type.descriptor.java.ImmutableMutabilityPlan;
 import org.hibernate.type.descriptor.java.MutabilityPlan;
 import org.hibernate.type.descriptor.jdbc.JdbcType;
 import org.hibernate.type.descriptor.jdbc.JdbcTypeIndicators;
+
+import com.heybys.oddments.base.domain.LongTypeIdentifier;
 
 public abstract class LongTypeIdentifierJavaType<T extends LongTypeIdentifier> extends AbstractClassJavaType<T> {
 

@@ -1,17 +1,20 @@
 package com.heybys.oddments.fooddelivery.domain.cart;
 
-import com.heybys.oddments.base.domain.AggregateRoot;
-import com.heybys.oddments.fooddelivery.domain.cart.CartId.CartIdJavaType;
-import com.heybys.oddments.fooddelivery.domain.user.UserId;
-import com.heybys.oddments.fooddelivery.domain.user.UserId.UserIdJavaType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
+import org.hibernate.annotations.JavaType;
+
+import com.heybys.oddments.base.domain.AggregateRoot;
+import com.heybys.oddments.fooddelivery.domain.cart.CartId.CartIdJavaType;
+import com.heybys.oddments.fooddelivery.domain.user.UserId;
+import com.heybys.oddments.fooddelivery.domain.user.UserId.UserIdJavaType;
+
 import lombok.Builder;
 import lombok.Getter;
-import org.hibernate.annotations.JavaType;
 
 @SuppressWarnings("JpaAttributeTypeInspection")
 @Getter

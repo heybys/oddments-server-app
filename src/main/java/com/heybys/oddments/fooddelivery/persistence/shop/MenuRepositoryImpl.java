@@ -1,12 +1,14 @@
 package com.heybys.oddments.fooddelivery.persistence.shop;
 
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
 import com.heybys.oddments.base.jpa.BaseRepository;
 import com.heybys.oddments.fooddelivery.domain.shop.Menu;
 import com.heybys.oddments.fooddelivery.domain.shop.MenuId;
 import com.heybys.oddments.fooddelivery.domain.shop.MenuRepository;
 import com.heybys.oddments.fooddelivery.domain.shop.ShopId;
-import java.util.List;
-import org.springframework.stereotype.Repository;
 
 @Repository
 class MenuRepositoryImpl extends BaseRepository<Menu, MenuId, MenuJpaRepository> implements MenuRepository {

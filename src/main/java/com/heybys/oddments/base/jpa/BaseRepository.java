@@ -1,8 +1,9 @@
 package com.heybys.oddments.base.jpa;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.heybys.oddments.base.domain.AggregateRoot;
 import com.heybys.oddments.base.domain.Repository;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 public abstract class BaseRepository<D extends AggregateRoot<D, I>, I, R extends JpaRepository<D, I>>
         implements Repository<D, I> {

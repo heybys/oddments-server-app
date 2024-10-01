@@ -1,8 +1,11 @@
 package com.heybys.oddments.fooddelivery.domain.generic;
 
-import com.heybys.oddments.base.domain.ValueObject;
-import jakarta.persistence.Embeddable;
 import java.time.LocalTime;
+
+import jakarta.persistence.Embeddable;
+
+import com.heybys.oddments.base.domain.ValueObject;
+
 import lombok.Getter;
 
 @Getter

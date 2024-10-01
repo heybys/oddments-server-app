@@ -60,6 +60,7 @@ tasks.named('test') {
 spotless {
     java {
         palantirJavaFormat('2.39.0')
+        importOrder('java', 'javax', 'jakarta', 'org', 'com')
         removeUnusedImports()
     }
 }

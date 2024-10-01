@@ -1,8 +1,10 @@
 package com.heybys.oddments.fooddelivery.domain.shop;
 
-import com.heybys.oddments.base.domain.DomainEntity;
-import com.heybys.oddments.fooddelivery.domain.shop.MenuId.MenuIdJavaType;
-import com.heybys.oddments.fooddelivery.domain.shop.OptionGroupId.OptionGroupIdJavaType;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -13,12 +15,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import lombok.Getter;
+
 import org.hibernate.annotations.JavaType;
+
+import com.heybys.oddments.base.domain.DomainEntity;
+import com.heybys.oddments.fooddelivery.domain.shop.MenuId.MenuIdJavaType;
+import com.heybys.oddments.fooddelivery.domain.shop.OptionGroupId.OptionGroupIdJavaType;
+
+import lombok.Getter;
 
 @SuppressWarnings("JpaAttributeTypeInspection")
 @Getter

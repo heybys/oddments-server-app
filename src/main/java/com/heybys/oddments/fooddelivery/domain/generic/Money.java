@@ -1,9 +1,11 @@
 package com.heybys.oddments.fooddelivery.domain.generic;
 
-import com.heybys.oddments.base.domain.ValueObject;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.function.Function;
+
+import com.heybys.oddments.base.domain.ValueObject;
+
 import lombok.Getter;
 
 @Getter

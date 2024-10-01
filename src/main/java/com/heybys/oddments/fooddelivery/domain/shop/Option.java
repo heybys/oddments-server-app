@@ -1,11 +1,13 @@
 package com.heybys.oddments.fooddelivery.domain.shop;
 
-import com.heybys.oddments.base.domain.ValueObject;
-import com.heybys.oddments.base.jpa.MoneyConverter;
-import com.heybys.oddments.fooddelivery.domain.generic.Money;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Embeddable;
+
+import com.heybys.oddments.base.domain.ValueObject;
+import com.heybys.oddments.base.jpa.MoneyConverter;
+import com.heybys.oddments.fooddelivery.domain.generic.Money;
+
 import lombok.Getter;
 
 @Getter

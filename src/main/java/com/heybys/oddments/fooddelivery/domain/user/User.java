@@ -1,9 +1,5 @@
 package com.heybys.oddments.fooddelivery.domain.user;
 
-import com.heybys.oddments.base.domain.AggregateRoot;
-import com.heybys.oddments.fooddelivery.domain.generic.Address;
-import com.heybys.oddments.fooddelivery.domain.generic.Contact;
-import com.heybys.oddments.fooddelivery.domain.user.UserId.UserIdJavaType;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
@@ -13,8 +9,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
+
 import org.hibernate.annotations.JavaType;
+
+import com.heybys.oddments.base.domain.AggregateRoot;
+import com.heybys.oddments.fooddelivery.domain.generic.Address;
+import com.heybys.oddments.fooddelivery.domain.generic.Contact;
+import com.heybys.oddments.fooddelivery.domain.user.UserId.UserIdJavaType;
+
+import lombok.Getter;
 
 @SuppressWarnings({"JpaAttributeTypeInspection", "java:S1710"})
 @Getter
