@@ -1,6 +1,6 @@
 package com.heybys.oddments.base.domain;
 
-public abstract class DomainEntity<T extends DomainEntity<T, I>, I> {
+public abstract class DomainEntity<T extends DomainEntity<T, I>, I> extends BaseEntity {
 
     public abstract I getId();
 
