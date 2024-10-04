@@ -1,12 +1,11 @@
 package com.heybys.oddments.base.domain;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
-
+import jakarta.persistence.Transient;
+import java.time.LocalDateTime;
 import lombok.Getter;
 
 @Getter
@@ -22,21 +21,52 @@ abstract class BaseEntity implements BaseEntityAware {
     @Column(length = 512)
     private String lastModifiedBy;
 
-    @Column()
+    @Column
     private LocalDateTime lastModifiedDate;
+
+    @Transient
+    private boolean isCreatedByAwareMode = true;
+
+    @Transient
+    private boolean isCreatedDateAwareMode = true;
+
+    @Transient
+    private boolean isLastModifiedByAwareMode = true;
+
+    @Transient
+    private boolean isLastModifiedDateAwareMode = true;
 
     @PrePersist
     private void prePersist() {
-        createdBy = getCurrentAuditor();
-        createdDate = getNow();
-
-        lastModifiedBy = getCurrentAuditor();
-        lastModifiedDate = getNow();
+        createdBy = isCreatedByAwareMode ? getCurrentAuditor() : createdBy;
+        createdDate = isCreatedDateAwareMode ? getNow() : createdDate;
+        lastModifiedBy = isLastModifiedByAwareMode ? getCurrentAuditor() : lastModifiedBy;
+        lastModifiedDate = isLastModifiedDateAwareMode ? getNow() : lastModifiedDate;
     }
 
     @PreUpdate
     private void preUpdate() {
-        lastModifiedBy = getCurrentAuditor();
-        lastModifiedDate = getNow();
+        lastModifiedBy = isLastModifiedByAwareMode ? getCurrentAuditor() : lastModifiedBy;
+        lastModifiedDate = isLastModifiedDateAwareMode ? getNow() : lastModifiedDate;
+    }
+
+    protected void setCreatedBy(String createdBy) {
+        isCreatedByAwareMode = false;
+        this.createdBy = createdBy;
+    }
+
+    protected void setCreatedDate(LocalDateTime createdDate) {
+        isCreatedDateAwareMode = false;
+        this.createdDate = createdDate;
+    }
+
+    protected void setLastModifiedBy(String lastModifiedBy) {
+        isLastModifiedByAwareMode = false;
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    protected void setLastModifiedDate(LocalDateTime lastModifiedDate) {
+        isLastModifiedDateAwareMode = false;
+        this.lastModifiedDate = lastModifiedDate;
     }
 }
