@@ -57,7 +57,7 @@ public class ShopService {
     }
 
     @Transactional
-    public void puttOffOneHourOn(ShopId shopId, DayOfWeek dayOfWeek) {
+    public void putOffOneHourOn(ShopId shopId, DayOfWeek dayOfWeek) {
         Shop shop = shopRepository.find(shopId);
         shop.putOffOneHourOn(dayOfWeek);
 

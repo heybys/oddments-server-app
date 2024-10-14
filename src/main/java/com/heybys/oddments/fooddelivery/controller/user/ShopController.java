@@ -35,7 +35,7 @@ public class ShopController {
     @PatchMapping("/operation-hours")
     public ResponseEntity<Void> putOffOneHour() {
 
-        shopService.puttOffOneHourOn(new ShopId(1L), DayOfWeek.MONDAY);
+        shopService.putOffOneHourOn(new ShopId(1L), DayOfWeek.MONDAY);
 
         return ResponseEntity.ok().build();
     }
