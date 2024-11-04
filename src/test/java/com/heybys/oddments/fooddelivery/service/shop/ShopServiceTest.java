@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.heybys.oddments.fooddelivery.domain.generic.Money;
 import com.heybys.oddments.fooddelivery.domain.generic.TimePeriod;
+import com.heybys.oddments.fooddelivery.domain.shop.MenuRepository;
 import com.heybys.oddments.fooddelivery.domain.shop.Shop;
 import com.heybys.oddments.fooddelivery.domain.shop.ShopId;
 import com.heybys.oddments.fooddelivery.domain.shop.ShopRepository;
@@ -28,16 +29,20 @@ import org.springframework.transaction.annotation.Transactional;
 class ShopServiceTest {
 
     private static Shop shop;
-    private static ShopId shopId;
 
-    private final ShopService shopService;
+    private static ShopId shopId;
 
     private final ShopRepository shopRepository;
 
+    private final MenuRepository menuRepository;
+
+    private final ShopService shopService;
+
     @Autowired
-    public ShopServiceTest(ShopService shopService, ShopRepository shopRepository) {
-        this.shopService = shopService;
+    public ShopServiceTest(MenuRepository menuRepository, ShopRepository shopRepository) {
+        this.menuRepository = menuRepository;
         this.shopRepository = shopRepository;
+        this.shopService = new ShopService(menuRepository, shopRepository);
     }
 
     @BeforeAll
