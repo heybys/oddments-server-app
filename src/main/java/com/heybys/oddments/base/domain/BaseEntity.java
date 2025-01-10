@@ -1,11 +1,13 @@
 package com.heybys.oddments.base.domain;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Transient;
-import java.time.LocalDateTime;
+
 import lombok.Getter;
 
 @Getter

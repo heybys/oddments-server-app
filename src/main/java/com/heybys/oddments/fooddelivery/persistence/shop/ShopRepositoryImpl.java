@@ -1,5 +1,7 @@
 package com.heybys.oddments.fooddelivery.persistence.shop;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.heybys.oddments.base.jpa.BaseRepository;
@@ -12,5 +14,10 @@ class ShopRepositoryImpl extends BaseRepository<Shop, ShopId, ShopJpaRepository>
 
     public ShopRepositoryImpl(ShopJpaRepository repository) {
         super(repository);
+    }
+
+    @Override
+    public List<Shop> getShops() {
+        return repository.findAll();
     }
 }

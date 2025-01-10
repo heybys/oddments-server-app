@@ -1,5 +1,7 @@
 package com.heybys.oddments.fooddelivery.persistence.user;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Repository;
 
 import com.heybys.oddments.base.jpa.BaseRepository;
@@ -12,5 +14,10 @@ class UserRepositoryImpl extends BaseRepository<User, UserId, UserJpaRepository>
 
     public UserRepositoryImpl(UserJpaRepository repository) {
         super(repository);
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return repository.findByEmail(email);
     }
 }

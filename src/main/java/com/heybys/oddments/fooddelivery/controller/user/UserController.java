@@ -31,7 +31,7 @@ public class UserController {
     public ResponseEntity<Void> addUser(@RequestBody UserAddRequest request) {
         User user = request.toUserDomain();
 
-        userRepository.add(user);
+        userRepository.save(user);
 
         URI location = URI.create("/api/v1/user/" + user.getId().longValue());
 

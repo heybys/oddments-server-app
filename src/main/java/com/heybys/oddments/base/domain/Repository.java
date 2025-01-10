@@ -1,7 +1,7 @@
 package com.heybys.oddments.base.domain;
 
 public interface Repository<D extends AggregateRoot<D, I>, I> {
-    void add(D root);
+    D save(D root);
 
     D find(I id);
 

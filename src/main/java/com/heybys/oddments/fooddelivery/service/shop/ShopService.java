@@ -3,6 +3,7 @@ package com.heybys.oddments.fooddelivery.service.shop;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,7 @@ public class ShopService {
         operatingHours.put(DayOfWeek.WEDNESDAY, TimePeriod.between(LocalTime.of(9, 0), LocalTime.of(18, 0)));
         Shop shop = new Shop("Test", Money.wons(32L), operatingHours);
 
-        shopRepository.add(shop);
+        shopRepository.save(shop);
 
         Option option1 = new Option("option1", Money.wons(10L));
         Option option2 = new Option("option2", Money.wons(20L));
@@ -47,9 +48,13 @@ public class ShopService {
 
         Menu menu = new Menu(shop.getId(), "menu1", "desc1");
         menu.addOptionGroup(optionGroup1);
-        menuRepository.add(menu);
+        menuRepository.save(menu);
 
         return shop.getId();
+    }
+
+    public List<Shop> getShops() {
+        return shopRepository.getShops();
     }
 
     public void registerShop() {

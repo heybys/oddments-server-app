@@ -18,7 +18,6 @@ public class UserFindResponse {
     private final Address workAddress;
 
     public static UserFindResponse of(User user) {
-        return new UserFindResponse(
-                user.getUsername(), user.getContact(), user.getHomeAddress(), user.getWorkAddress());
+        return new UserFindResponse(user.getName(), null, null, null);
     }
 }

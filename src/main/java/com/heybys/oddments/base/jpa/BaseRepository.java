@@ -15,8 +15,8 @@ public abstract class BaseRepository<D extends AggregateRoot<D, I>, I, R extends
     }
 
     @Override
-    public void add(D root) {
-        repository.save(root);
+    public D save(D root) {
+        return repository.save(root);
     }
 
     @Override

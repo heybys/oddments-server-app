@@ -1,28 +1,34 @@
 package com.heybys.oddments.fooddelivery.domain.user;
 
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 
 import org.hibernate.annotations.JavaType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.heybys.oddments.base.domain.AggregateRoot;
-import com.heybys.oddments.fooddelivery.domain.generic.Address;
-import com.heybys.oddments.fooddelivery.domain.generic.Contact;
+import com.heybys.oddments.fooddelivery.domain.generic.AuthProvider;
 import com.heybys.oddments.fooddelivery.domain.user.UserId.UserIdJavaType;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @SuppressWarnings({"JpaAttributeTypeInspection", "java:S1710"})
 @Getter
+@Setter
 @Entity
-@Table(name = "user")
+@Table(
+        name = "user",
+        uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
 public class User extends AggregateRoot<User, UserId> {
 
     @Id
@@ -30,40 +36,57 @@ public class User extends AggregateRoot<User, UserId> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UserId id;
 
-    @Column(name = "username")
-    private String username;
+    @Column(nullable = false)
+    private String name;
 
-    @Embedded
-    private Contact contact;
+    @JsonIgnore
+    private String password;
 
-    @AttributeOverrides({
-        @AttributeOverride(name = "city", column = @Column(name = "home_city")),
-        @AttributeOverride(name = "street", column = @Column(name = "home_street")),
-        @AttributeOverride(name = "zipCode", column = @Column(name = "home_zip_code")),
-    })
-    @Embedded
-    private Address homeAddress;
+    @Email
+    @Column(nullable = false)
+    private String email;
 
-    @AttributeOverrides({
-        @AttributeOverride(name = "city", column = @Column(name = "work_city")),
-        @AttributeOverride(name = "street", column = @Column(name = "work_street")),
-        @AttributeOverride(name = "zipCode", column = @Column(name = "work_zip_code")),
-    })
-    @Embedded
-    private Address workAddress;
+    private String imageUrl;
+
+    @Column(nullable = false, columnDefinition = "TINYINT")
+    private Boolean emailVerified = false;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private AuthProvider provider;
+
+    private String providerId;
 
     public User() {}
 
-    public User(String username, Contact contact, Address homeAddress, Address workAddress) {
-        this(null, username, contact, homeAddress, workAddress);
+    public User(
+            String name,
+            String password,
+            String email,
+            String imageUrl,
+            Boolean emailVerified,
+            AuthProvider provider,
+            String providerId) {
+        this(null, name, password, email, imageUrl, emailVerified, provider, providerId);
     }
 
-    public User(UserId id, String username, Contact contact, Address homeAddress, Address workAddress) {
+    public User(
+            UserId id,
+            String name,
+            String password,
+            String email,
+            String imageUrl,
+            Boolean emailVerified,
+            AuthProvider provider,
+            String providerId) {
         this.id = id;
-        this.username = username;
-        this.contact = contact;
-        this.homeAddress = homeAddress;
-        this.workAddress = workAddress;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.imageUrl = imageUrl;
+        this.emailVerified = emailVerified;
+        this.provider = provider;
+        this.providerId = providerId;
     }
 
     @Override

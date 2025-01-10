@@ -1,7 +1,6 @@
 package com.heybys.oddments.fooddelivery.controller.user;
 
-import com.heybys.oddments.fooddelivery.domain.generic.Address;
-import com.heybys.oddments.fooddelivery.domain.generic.Contact;
+import com.heybys.oddments.fooddelivery.domain.generic.AuthProvider;
 import com.heybys.oddments.fooddelivery.domain.user.User;
 
 import lombok.Data;
@@ -20,18 +19,6 @@ public class UserAddRequest {
     private final String workZipCode;
 
     public User toUserDomain() {
-        return new User(username, toContact(), toHomeAddress(), toWorkAddress());
-    }
-
-    private Contact toContact() {
-        return new Contact(phone, email);
-    }
-
-    private Address toHomeAddress() {
-        return new Address(homeCity, homeStreet, homeZipCode);
-    }
-
-    private Address toWorkAddress() {
-        return new Address(workCity, workStreet, workZipCode);
+        return new User(username, "password", email, "", false, AuthProvider.GOOGLE, "");
     }
 }
