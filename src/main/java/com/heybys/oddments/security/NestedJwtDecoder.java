@@ -2,11 +2,14 @@ package com.heybys.oddments.security;
 
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.Date;
 import java.util.Map;
 
+import org.springframework.security.oauth2.core.OAuth2TokenValidator;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtException;
+import org.springframework.security.oauth2.jwt.JwtValidators;
 
 import com.nimbusds.jose.JWEObject;
 import com.nimbusds.jose.crypto.RSADecrypter;
@@ -17,6 +20,7 @@ import com.nimbusds.jwt.SignedJWT;
 public class NestedJwtDecoder implements JwtDecoder {
     private final RSAPrivateKey decryptionKey;
     private final RSAPublicKey verificationKey;
+    private OAuth2TokenValidator<Jwt> jwtValidator = JwtValidators.createDefault();
 
     public NestedJwtDecoder(RSAPrivateKey decryptionKey, RSAPublicKey verificationKey) {
         this.decryptionKey = decryptionKey;
@@ -42,6 +46,12 @@ public class NestedJwtDecoder implements JwtDecoder {
 
             // 5. Extract claims
             JWTClaimsSet claims = signedJWT.getJWTClaimsSet();
+
+            // 6. 만료 시간 체크
+            Date expirationTime = claims.getExpirationTime();
+            if (expirationTime != null && new Date().after(expirationTime)) {
+                throw new JwtException("JWT is expired");
+            }
 
             return new Jwt(
                     token,

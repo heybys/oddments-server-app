@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import com.heybys.oddments.fooddelivery.domain.user.User;
 
-public class UserPrincipal implements OAuth2User, UserDetails {
+public class OAuth2UserPrincipal implements OAuth2User, UserDetails {
     private final Long id;
     private final String name;
     private final String email;
@@ -20,7 +20,7 @@ public class UserPrincipal implements OAuth2User, UserDetails {
     private final Collection<? extends GrantedAuthority> authorities;
     private final Map<String, Object> attributes;
 
-    public UserPrincipal(
+    public OAuth2UserPrincipal(
             Long id,
             String name,
             String email,
@@ -35,14 +35,14 @@ public class UserPrincipal implements OAuth2User, UserDetails {
         this.attributes = attributes;
     }
 
-    public static UserPrincipal create(User user) {
-        return UserPrincipal.create(user, null);
+    public static OAuth2UserPrincipal create(User user) {
+        return OAuth2UserPrincipal.create(user, null);
     }
 
-    public static UserPrincipal create(User user, Map<String, Object> attributes) {
+    public static OAuth2UserPrincipal create(User user, Map<String, Object> attributes) {
         List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
 
-        return new UserPrincipal(
+        return new OAuth2UserPrincipal(
                 user.getId().longValue(), user.getName(), user.getEmail(), user.getPassword(), authorities, attributes);
     }
 

@@ -14,7 +14,7 @@ import com.heybys.oddments.exception.OAuth2AuthenticationProcessingException;
 import com.heybys.oddments.fooddelivery.domain.generic.AuthProvider;
 import com.heybys.oddments.fooddelivery.domain.user.User;
 import com.heybys.oddments.fooddelivery.domain.user.UserRepository;
-import com.heybys.oddments.security.UserPrincipal;
+import com.heybys.oddments.security.OAuth2UserPrincipal;
 import com.heybys.oddments.security.oauth2.user.OAuth2UserInfo;
 import com.heybys.oddments.security.oauth2.user.OAuth2UserInfoFactory;
 
@@ -66,12 +66,11 @@ public class OAuth2UserProcessingService extends DefaultOAuth2UserService {
             user = registerNewUser(oAuth2UserRequest, oAuth2UserInfo);
         }
 
-        return UserPrincipal.create(user, oAuth2User.getAttributes());
+        return OAuth2UserPrincipal.create(user, oAuth2User.getAttributes());
     }
 
     private User registerNewUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
         User user = new User();
-
         user.setName(oAuth2UserInfo.getName());
         user.setEmail(oAuth2UserInfo.getEmail());
         user.setImageUrl(oAuth2UserInfo.getImageUrl());
