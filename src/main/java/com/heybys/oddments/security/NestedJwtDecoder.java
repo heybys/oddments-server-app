@@ -47,7 +47,7 @@ public class NestedJwtDecoder implements JwtDecoder {
             // 5. Extract claims
             JWTClaimsSet claims = signedJWT.getJWTClaimsSet();
 
-            // 6. 만료 시간 체크
+            // 6. Verify expiration time
             Date expirationTime = claims.getExpirationTime();
             if (expirationTime != null && new Date().after(expirationTime)) {
                 throw new JwtException("JWT is expired");
