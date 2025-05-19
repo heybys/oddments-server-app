@@ -11,7 +11,10 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.security.oauth2.jwt.JwtEncodingException;
 
+import com.heybys.oddments.config.KeyConfig;
 import com.nimbusds.jose.EncryptionMethod;
+import com.nimbusds.jose.JOSEException;
+import com.nimbusds.jose.JOSEObjectType;
 import com.nimbusds.jose.JWEAlgorithm;
 import com.nimbusds.jose.JWEHeader;
 import com.nimbusds.jose.JWEObject;
@@ -20,22 +23,25 @@ import com.nimbusds.jose.JWSHeader;
 import com.nimbusds.jose.Payload;
 import com.nimbusds.jose.crypto.RSAEncrypter;
 import com.nimbusds.jose.crypto.RSASSASigner;
+import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 
 public class NestedJwtEncoder implements JwtEncoder {
+
     private final RSAPrivateKey signingKey;
     private final RSAPublicKey encryptionKey;
 
-    public NestedJwtEncoder(RSAPrivateKey signingKey, RSAPublicKey encryptionKey) {
-        this.signingKey = signingKey;
-        this.encryptionKey = encryptionKey;
+    public NestedJwtEncoder(JWKSet jwkSet) throws JOSEException {
+        this.signingKey = jwkSet.getKeyByKeyId(KeyConfig.SIGNING_KEY).toRSAKey().toRSAPrivateKey();
+        this.encryptionKey =
+                jwkSet.getKeyByKeyId(KeyConfig.ENCRYPTION_KEY).toRSAKey().toRSAPublicKey();
     }
 
     @Override
     public Jwt encode(JwtEncoderParameters parameters) throws JwtEncodingException {
         try {
-            // Spring Security의 JwtClaimsSet을 Nimbus의 JWTClaimsSet으로 변환
+            // Spring Security 의 JwtClaimsSet 을 Nimbus 의 JWTClaimsSet 으로 변환
             JWTClaimsSet.Builder claimsBuilder = new JWTClaimsSet.Builder();
 
             JwtClaimsSet springClaims = parameters.getClaims();
@@ -58,11 +64,14 @@ public class NestedJwtEncoder implements JwtEncoder {
             if (springClaims.getSubject() != null) {
                 claimsBuilder.subject(springClaims.getSubject());
             }
-            // 필요한 경우 다른 registered claims도 추가
 
             // 1. Create signed JWT (JWS)
-            SignedJWT signedJWT =
-                    new SignedJWT(new JWSHeader.Builder(JWSAlgorithm.RS256).build(), claimsBuilder.build());
+            SignedJWT signedJWT = new SignedJWT(
+                    new JWSHeader.Builder(JWSAlgorithm.RS256)
+                            .type(JOSEObjectType.JWT)
+                            .keyID(KeyConfig.SIGNING_KEY)
+                            .build(),
+                    claimsBuilder.build());
 
             // 2. Sign the JWT
             signedJWT.sign(new RSASSASigner(signingKey));
@@ -70,7 +79,9 @@ public class NestedJwtEncoder implements JwtEncoder {
             // 3. Create encrypted JWT (JWE)
             JWEObject jweObject = new JWEObject(
                     new JWEHeader.Builder(JWEAlgorithm.RSA_OAEP_256, EncryptionMethod.A256GCM)
-                            .contentType("JWT") // 중첩된 JWT임을 표시
+                            .keyID(KeyConfig.ENCRYPTION_KEY)
+                            .type(JOSEObjectType.JOSE)
+                            .contentType(JOSEObjectType.JWT.getType())
                             .build(),
                     new Payload(signedJWT));
 

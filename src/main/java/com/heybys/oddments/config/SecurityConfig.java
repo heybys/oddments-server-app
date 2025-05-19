@@ -1,7 +1,5 @@
 package com.heybys.oddments.config;
 
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
 import java.util.List;
 
 import org.springframework.context.annotation.Bean;
@@ -32,8 +30,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.heybys.oddments.fooddelivery.domain.user.UserRepository;
 import com.heybys.oddments.security.CustomAuthenticationEntryPoint;
-import com.heybys.oddments.security.NestedJwtDecoder;
-import com.heybys.oddments.security.NestedJwtEncoder;
 import com.heybys.oddments.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.heybys.oddments.security.oauth2.OAuth2AuthenticationFailureHandler;
 import com.heybys.oddments.security.oauth2.OAuth2AuthenticationSuccessHandler;
@@ -48,21 +44,9 @@ public class SecurityConfig {
 
     private final UserRepository userRepository;
 
-    private final RSAPublicKey signingPublicKey;
-    private final RSAPrivateKey signingPrivateKey;
+    private final JwtDecoder jwtDecoder;
 
-    private final RSAPublicKey encryptionPublicKey;
-    private final RSAPrivateKey encryptionPrivateKey;
-
-    @Bean
-    public JwtDecoder jwtDecoder() {
-        return new NestedJwtDecoder(encryptionPrivateKey, signingPublicKey);
-    }
-
-    @Bean
-    public JwtEncoder jwtEncoder() {
-        return new NestedJwtEncoder(signingPrivateKey, encryptionPublicKey);
-    }
+    private final JwtEncoder jwtEncoder;
 
     public Converter<Jwt, ? extends AbstractAuthenticationToken> jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
@@ -85,7 +69,7 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler() {
-        return new OAuth2AuthenticationSuccessHandler(jwtEncoder());
+        return new OAuth2AuthenticationSuccessHandler(jwtEncoder);
     }
 
     @Bean
@@ -123,7 +107,7 @@ public class SecurityConfig {
                         .failureHandler(authenticationFailureHandler()))
                 .oauth2ResourceServer(oAuth2ResourceServerConfigurer ->
                         oAuth2ResourceServerConfigurer.jwt(jwtConfigurer -> jwtConfigurer
-                                .decoder(jwtDecoder())
+                                .decoder(jwtDecoder)
                                 .jwtAuthenticationConverter(jwtAuthenticationConverter())))
                 // .exceptionHandling(exceptionHandlingConfigurer ->
                 //         exceptionHandlingConfigurer.authenticationEntryPoint(authenticationEntryPoint()))
